@@ -1,0 +1,26 @@
+logging:
+  level:
+    blog: WARN
+    org: warn
+    org.hibernate.SQL: DEBUG
+
+server:
+  port: 8080
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    password: 12345
+    url: jdbc:mysql://localhost:3306/WarriorsTest?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+        show_sql: true
+  mvc:
+    hidden-method:
+      filter:
+        enabled: true
