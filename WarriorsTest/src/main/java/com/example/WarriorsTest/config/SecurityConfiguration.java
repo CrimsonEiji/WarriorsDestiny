@@ -1,13 +1,12 @@
 package com.example.WarriorsTest.config;
 
 import com.example.WarriorsTest.enums.UserRoles;
-import com.example.WarriorsTest.repository.UserRepository;
 import com.example.WarriorsTest.services.AppUserDetailsService;
+import com.example.WarriorsTest.services.UserService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,19 +18,18 @@ import org.springframework.security.web.context.RequestAttributeSecurityContextR
 import org.springframework.security.web.context.SecurityContextRepository;
 
 @Configuration
-@EnableWebSecurity(debug = true)
 public class SecurityConfiguration {
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    public SecurityConfiguration(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public SecurityConfiguration(UserService userService) {
+        this.userService = userService;
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, SecurityContextRepository securityContextRepository) throws Exception {
         http.authorizeHttpRequests().requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                .requestMatchers("/resources/**", "/", "/auth/login", "/auth/register", "/errors", "/auth/login-error").permitAll()
+                .requestMatchers("/fonts/**", "/", "/auth/login", "/auth/register", "/errors", "/auth/login-error").permitAll()
                 .requestMatchers("/home").hasRole(UserRoles.ADMIN.name())
                 .anyRequest()
                 .authenticated()
@@ -64,7 +62,7 @@ public class SecurityConfiguration {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new AppUserDetailsService(userRepository);
+        return new AppUserDetailsService(userService);
     }
 
     @Bean

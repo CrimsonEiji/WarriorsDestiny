@@ -19,11 +19,23 @@ public class UserEntity {
     @Column(name = "password")
     private String password;
 
-    @Column(unique = true,nullable = false)
+    @Column(unique = true, nullable = false)
     private String email;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<RoleEntity> roles;
+
+    @OneToOne
+    private HeroEntity hero;
+
+    public HeroEntity getHero() {
+        return hero;
+    }
+
+    public UserEntity setHero(HeroEntity hero) {
+        this.hero = hero;
+        return this;
+    }
 
     public UserEntity() {
     }
