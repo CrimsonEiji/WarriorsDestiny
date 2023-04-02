@@ -1,5 +1,6 @@
 package com.example.WarriorsTest.services;
 
+import com.example.WarriorsTest.config.CustomUser;
 import com.example.WarriorsTest.models.entity.RoleEntity;
 import com.example.WarriorsTest.models.entity.UserEntity;
 import com.example.WarriorsTest.repository.UserRepository;
@@ -31,8 +32,8 @@ public class AppUserDetailsService implements UserDetailsService {
 
 
     private UserDetails map(UserEntity userEntity) {
-        return new User(userEntity.getUsername(),
-                userEntity.getPassword(),
+        return new CustomUser(userEntity.getUsername(),
+                userEntity.getPassword(), userEntity.getEmail(),
                 extractAuthorities(userEntity));
     }
 

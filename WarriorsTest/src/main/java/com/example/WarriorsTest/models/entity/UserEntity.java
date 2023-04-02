@@ -25,7 +25,7 @@ public class UserEntity {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<RoleEntity> roles;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private HeroEntity hero;
 
     public HeroEntity getHero() {

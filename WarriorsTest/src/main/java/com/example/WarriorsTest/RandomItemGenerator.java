@@ -8,7 +8,7 @@ import java.util.Random;
 public class RandomItemGenerator {
 
 
-    public ItemEntity generate() {
+    public ItemEntity generate(int level) {
         Random chance = new Random();
         ItemType itemType = getRandomItemType(chance.nextDouble(0, 100.0));
         Type type = getRandmType(itemType, chance.nextDouble(0, 100.0));
@@ -19,6 +19,7 @@ public class RandomItemGenerator {
         double weight = getWeight(type, material);
         int durability = getDurability(rarity);
         String name = generateName(rarity, type, element);
+        stat+= level*2;
         String description = generateDescription(type, element);
         return new ItemEntity()
                 .setItemType(itemType)

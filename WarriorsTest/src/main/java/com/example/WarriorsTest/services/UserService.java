@@ -20,6 +20,9 @@ public class UserService {
     public void saveAndFlush(UserEntity user) {
         userRepository.saveAndFlush(user);
     }
+    public void save(UserEntity user) {
+        userRepository.save(user);
+    }
 
     public Optional<UserEntity> findById(Long id) {
         return userRepository.findById(id);

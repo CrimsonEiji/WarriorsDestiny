@@ -1,5 +1,6 @@
 package com.example.WarriorsTest.models.entity;
 
+import com.example.WarriorsTest.enums.HeroClass;
 import com.example.WarriorsTest.enums.SpellType;
 import jakarta.persistence.*;
 
@@ -18,9 +19,22 @@ public class SpellEntity {
     private SpellType spellType;
 
     @Column
-    private String stat;
+    private int stat;
 
+    @Enumerated(EnumType.STRING)
+    private HeroClass forClass;
 
+    @Column
+    private int manaConsumption;
+
+    public int getManaConsumption() {
+        return manaConsumption;
+    }
+
+    public SpellEntity setManaConsumption(int manaConsumption) {
+        this.manaConsumption = manaConsumption;
+        return this;
+    }
 
     public Long getId() {
         return id;
@@ -28,6 +42,15 @@ public class SpellEntity {
 
     public SpellEntity setId(Long id) {
         this.id = id;
+        return this;
+    }
+
+    public HeroClass getForClass() {
+        return forClass;
+    }
+
+    public SpellEntity setForClass(HeroClass forClass) {
+        this.forClass = forClass;
         return this;
     }
 
@@ -49,11 +72,11 @@ public class SpellEntity {
         return this;
     }
 
-    public String getStat() {
+    public int getStat() {
         return stat;
     }
 
-    public SpellEntity setStat(String stat) {
+    public SpellEntity setStat(int stat) {
         this.stat = stat;
         return this;
     }
