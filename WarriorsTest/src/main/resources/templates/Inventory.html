@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/commons::head}">
+    <title></title></head>
+
+<body class="bg-theme bg-theme2">
+<div id="wrapper">
+
+    <div th:replace="~{fragments/sideBar}"></div>
+    <div th:replace="~{fragments/topBar}"></div>
+    <div class="content-wrapper">
+        <div class="container-fluid">
+
+            <div class="row mt-3 text-center">
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body" >
+                            <h5 class="card-title">Small Table</h5>
+                                <img src="/images/sword.png" class="inventory-image-icon" alt="image">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Responsive Table</h5>
+                                <img src="/images/potion.png" class="inventory-image-icon" alt="image">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Responsive Table</h5>
+                            <img src="/images/staff.png" class="inventory-image-icon" alt="image">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Responsive Table</h5>
+                            <img src="/images/bow.png" class="inventory-image-icon" alt="image">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Responsive Table</h5>
+                            <img src="/images/helmet.png" class="inventory-image-icon" alt="image">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Responsive Table</h5>
+                            <img src="/images/armour.png" class="inventory-image-icon" alt="image">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Responsive Table</h5>
+                            <img src="/images/boots.png" class="inventory-image-icon" alt="image">
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="overlay toggle-menu"></div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/scripts}"></div>
+</body>
+</html>

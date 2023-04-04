@@ -10,7 +10,6 @@
 <div th:replace="~{fragments/sideBar}"></div>
 
     <div th:replace="~{fragments/topBar}"></div>
-
     <div class="clearfix"></div>
 
     <div class="content-wrapper">
@@ -29,17 +28,13 @@
 
         </div>
         <!-- End container-fluid-->
+        <div class="overlay toggle-menu"></div>
+    </div>
 
-    </div><!--End content-wrapper-->
-
-
-    <!--Start Back To Top Button-->
-    <a class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
-    <!--End Back To Top Button-->
 
     <footer th:replace="~{fragments/commons::footer}">
     </footer>
-</div><!--End wrapper-->
+</div>
 
 <div th:replace="~{fragments/scripts}"></div>
 </body>

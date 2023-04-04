@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,12 +33,13 @@ public class AuthorizationController {
 
     @GetMapping("/login")
     public String getLogin() {
-        return "login";
+        return "Login";
     }
+
     @PostMapping("/login-error")
     public String getLoginError(@ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY) String username,
                                 RedirectAttributes redirectAttributes) {
-        System.out.println(username);
+
         redirectAttributes.addFlashAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY,username);
         redirectAttributes.addFlashAttribute("loginError",true);
 
@@ -48,7 +48,7 @@ public class AuthorizationController {
 
     @GetMapping("/register")
     public String getRegister() {
-        return "register";
+        return "Register";
     }
 
     @PostMapping("/register")
@@ -66,7 +66,7 @@ public class AuthorizationController {
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
         userService.saveAndFlush(newUser);
 
-        return "login";
+        return "Login";
     }
     @ModelAttribute("userRegisterDTO")
     public UserRegisterDTO userRegisterDTO() {

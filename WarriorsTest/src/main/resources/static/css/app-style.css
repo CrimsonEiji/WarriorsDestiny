@@ -1,11 +1,4 @@
 /*
-Template Name: Dashtreme Admin
-Author: CODERVENT
-Email: codervent@gmail.com
-File: app-style
-*/
-
-/*  
   - Google Font
   - General
   - Menu Sidebar Wrapper
@@ -660,6 +653,11 @@ body.bg-theme15 {
 .logo-icon{
     width: 35px;
     margin-right: 5px;
+}
+.inventory-image-icon{
+    width: 100px;
+    height: 100px;
+    margin-left: 5px;
 }
 
 
@@ -2998,7 +2996,7 @@ table.grid td {
 [class*="icheck-material"] {
   min-height: 22px;
   margin-top: 6px;
-  margin-bottom: 6px 
+  margin-bottom: 6px;
   padding-left: 0px; }
   [class*="icheck-material"] > label {
     padding-left: 29px !important;

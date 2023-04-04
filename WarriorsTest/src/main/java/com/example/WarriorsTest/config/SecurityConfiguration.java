@@ -29,8 +29,10 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, SecurityContextRepository securityContextRepository) throws Exception {
         http.authorizeHttpRequests().requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                .requestMatchers("/fonts/**", "/", "/auth/login", "/auth/register", "/errors", "/auth/login-error").permitAll()
-                .requestMatchers("/home").hasRole(UserRoles.ADMIN.name())
+                .requestMatchers("/error/**", "/plugins/**", "/flags/**", "/fonts/**", "/", "/errors", "/auth/login-error").permitAll()
+                .requestMatchers("/auth/login", "/auth/register").anonymous()
+                .requestMatchers("/home").authenticated()
+                .requestMatchers("/admin").hasRole(UserRoles.ADMIN.name())
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -42,7 +44,7 @@ public class SecurityConfiguration {
                 .loginPage("/auth/login")
                 .usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
                 .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
-                .defaultSuccessUrl("/home",true)
+                .defaultSuccessUrl("/home")
                 .failureForwardUrl("/auth/login-error")
                 .and()
                 .logout()

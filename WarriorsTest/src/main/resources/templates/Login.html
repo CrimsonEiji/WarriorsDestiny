@@ -6,15 +6,6 @@
 <body class="bg-theme bg-theme2">
 
 <div id="wrapper">
-
-    <div class="loader-wrapper">
-        <div class="lds-ring">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
     <div class="card card-authentication1 mx-auto my-5">
         <div class="card-body">
             <div class="card-content p-2">
@@ -27,7 +18,7 @@
                     <div class="form-group">
                         <label for="username" class="sr-only">Username</label>
                         <div class="position-relative has-icon-right">
-                            <input th:classappend="${loginError !=  null? 'alert-danger' : ''}" type="text"
+                            <input required minlength="3" maxlength="20" th:classappend="${loginError !=  null? 'alert-danger' : ''}" type="text"
                                    id="username" th:value="${username}" name="username"
                                    class="form-control input-shadow" placeholder="Enter Username">
                             <div class="form-control-position">
@@ -38,7 +29,7 @@
                     <div class="form-group">
                         <label for="password" class="sr-only">Password</label>
                         <div class="position-relative has-icon-right">
-                            <input th:classappend="${loginError !=  null? 'alert-danger' : ''}" type="password"
+                            <input required minlength="3" maxlength="20" th:classappend="${loginError !=  null? 'alert-danger' : ''}" type="password"
                                    name="password" id="password" class="form-control input-shadow"
                                    placeholder="Enter Password">
                             <div class="form-control-position">
@@ -53,9 +44,6 @@
                                 <label for="user-checkbox">Remember me</label>
                             </div>
                         </div>
-                        <!--			 <div class="form-group col-6 text-right">-->
-                        <!--			  <a href="reset-password.html">Reset Password</a>-->
-                        <!--			 </div>-->
                     </div>
                     <button type="submit" class="btn btn-light btn-block">Sign In</button>
                     <div class="form-row mt-4">

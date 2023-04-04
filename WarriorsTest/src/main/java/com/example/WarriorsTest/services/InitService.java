@@ -59,8 +59,14 @@ public class InitService {
                     .setPassword(passwordEncoder.encode("admin"))
                     .setEmail("admin@admin.com")
                     .setRoles(roleRepository.findAll());
+            var user2 = new UserEntity()
+                    .setUsername("pesho")
+                    .setPassword(passwordEncoder.encode("12345"))
+                    .setEmail("pesho@admin.com")
+                    .setRoles(List.of());
 
             userRepository.save(user1);
+            userRepository.save(user2);
         }
     }
 

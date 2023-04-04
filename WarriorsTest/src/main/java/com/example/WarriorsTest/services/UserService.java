@@ -31,5 +31,9 @@ public class UserService {
     public Optional<UserEntity> findByUsername(String username) {
         return userRepository.findUserByUsername(username);
     }
+
+    public Optional<UserEntity> findByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
 }
 

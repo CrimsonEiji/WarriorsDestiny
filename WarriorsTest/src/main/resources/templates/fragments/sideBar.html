@@ -1,47 +1,47 @@
 <div xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:fragment="sidebar" id="sidebar-wrapper"
      data-simplebar="" data-simplebar-auto-hide="true">
     <div class="brand-logo">
-        <a href="index.html">
+        <a th:href="@{/}">
             <img src="/images/logo-icon.png" class="logo-icon" alt="logo icon">
-            <h5 class="logo-text">Dashtreme Admin</h5>
+            <h5 class="logo-text">Warriors Destiny</h5>
         </a>
     </div>
     <ul class="sidebar-menu do-nicescrol">
-        <li class="sidebar-header">MAIN NAVIGATION</li>
         <li>
-            <a sec:authorize="isAuthenticated()" href="index.html">
-                <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>
+            <a sec:authorize="isAuthenticated()" th:href="@{/news}">
+                <i class="zmdi zmdi-assignment"></i> <span>News</span>
             </a>
         </li>
 
         <li>
-            <a sec:authorize="isAuthenticated()" href="icons.html">
-                <i class="zmdi zmdi-invert-colors"></i> <span>UI Icons</span>
+            <a sec:authorize="isAuthenticated()" th:href="@{/ranking}">
+                <i class="zmdi zmdi-accounts"></i> <span>Ranking</span>
             </a>
         </li>
 
         <li>
-            <a sec:authorize="isAuthenticated()" href="forms.html">
-                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Forms</span>
+            <a sec:authorize="isAuthenticated()" th:href="@{/inventory}">
+                <i class="zmdi zmdi-grid"></i> <span>Inventory</span>
             </a>
         </li>
 
         <li>
-            <a sec:authorize="isAuthenticated()" href="tables.html">
-                <i class="zmdi zmdi-grid"></i> <span>Tables</span>
+            <a sec:authorize="isAuthenticated()" th:href="@{/shop}">
+                <i class="zmdi zmdi-balance"></i> <span> Shop</span>
+                <!--                <small class="badge float-right badge-light">New</small>-->
             </a>
         </li>
 
         <li>
-            <a sec:authorize="isAuthenticated()" href="calendar.html">
-                <i class="zmdi zmdi-calendar-check"></i> <span>Calendar</span>
-                <small class="badge float-right badge-light">New</small>
+            <a sec:authorize="isAuthenticated()" th:href="@{/battle}">
+                <i class="zmdi zmdi-alert-polygon"></i> <span>Battle</span>
             </a>
         </li>
 
+
         <li>
-            <a sec:authorize="isAuthenticated()" href="profile.html">
-                <i class="zmdi zmdi-face"></i> <span>Profile</span>
+            <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}">
+                <i class="zmdi zmdi-face"></i> <span>Admin Panel</span>
             </a>
         </li>
 
@@ -57,5 +57,4 @@
             </a>
         </li>
     </ul>
-
 </div>
