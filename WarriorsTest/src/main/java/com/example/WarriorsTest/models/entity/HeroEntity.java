@@ -29,6 +29,18 @@ public class HeroEntity {
     private List<SpellEntity> spells;
 
     @OneToOne
+    private EquippedItemsEntity equipped;
+
+    public EquippedItemsEntity getEquipped() {
+        return equipped;
+    }
+
+    public HeroEntity setEquipped(EquippedItemsEntity equipped) {
+        this.equipped = equipped;
+        return this;
+    }
+
+    @OneToOne
     private StatsEntity stats;
 
 
@@ -85,6 +97,15 @@ public class HeroEntity {
 
     public HeroEntity setStats(StatsEntity stats) {
         this.stats = stats;
+        return this;
+    }
+
+    public HeroClass getHeroClass() {
+        return heroClass;
+    }
+
+    public HeroEntity setHeroClass(HeroClass heroClass) {
+        this.heroClass = heroClass;
         return this;
     }
 }

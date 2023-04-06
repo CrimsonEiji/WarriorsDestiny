@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/commons::head}">
+    <title></title></head>
+
+<body class="bg-theme bg-theme2">
+<div id="wrapper">
+
+    <div th:replace="~{fragments/sideBar}"></div>
+
+    <div th:replace="~{fragments/topBar}"></div>
+
+    <div th:replace="~{fragments/scripts}"></div>
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="row justify-content-md-center text-center">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${hero.getName()}"></h5>
+                            <h6 class="card-title" th:text="${'level - ' + hero.getLevel()}"></h6>
+                            <img th:src="@{${'/images/' + hero.getHeroClass().name()+ '.png'}}" class="inventory-image-icon"
+                                 alt="image">
+                            <div class="card-body">
+                                <h5 class="card-title">Stats</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-sm">
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row" colspan="2">Health:</th>
+                                            <th colspan="2" th:text="${hero.stats.getHealth()}"></th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" colspan="2">Mana:</th>
+                                            <th colspan="2" th:text="${hero.stats.getMana()}"></th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" colspan="2">Attack:</th>
+                                            <th colspan="2" th:text="${hero.stats.getAttack()}"></th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" colspan="2">Armour:</th>
+                                            <th colspan="2" th:text="${hero.stats.getArmour()}"></th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" colspan="2">Strength:</th>
+                                            <th colspan="2" th:text="${hero.stats.getStrength()}"></th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" colspan="2">Intellect:</th>
+                                            <th colspan="2" th:text="${hero.stats.getIntellect()}"></th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" colspan="2">Agility:</th>
+                                            <th colspan="2" th:text="${hero.stats.getAgility()}"></th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" colspan="2">Dodge:</th>
+                                            <th colspan="2" th:text="${hero.stats.getDodgeChance()}"></th>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="row mt-3 text-center">
+                <a class="col-lg-3" th:href="@{/items/details/{itemID}(itemID = ${1})}">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Small Table</h5>
+                            <img src="/images/SWORD.png" class="inventory-image-icon" alt="image">
+                        </div>
+                    </div>
+
+                </a>
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Responsive Table</h5>
+                            <img src="/images/MANA_POTION.png" class="inventory-image-icon" alt="image">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Responsive Table</h5>
+                            <img src="/images/STAFF.png" class="inventory-image-icon" alt="image">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Responsive Table</h5>
+                            <img src="/images/BOW.png" class="inventory-image-icon" alt="image">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Responsive Table</h5>
+                            <img src="/images/HELMET.png" class="inventory-image-icon" alt="image">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Responsive Table</h5>
+                            <img src="/images/CHEST.png" class="inventory-image-icon" alt="image">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Responsive Table</h5>
+                            <img src="/images/BOOTS.png" class="inventory-image-icon" alt="image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <div class="overlay toggle-menu"></div>
+
+</div>
+</body>
+</html>

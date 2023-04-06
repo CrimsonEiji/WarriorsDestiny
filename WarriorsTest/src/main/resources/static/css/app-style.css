@@ -659,6 +659,11 @@ body.bg-theme15 {
     height: 100px;
     margin-left: 5px;
 }
+.inventory-image-icon-small{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+}
 
 
 .user-details .media .avatar img {

@@ -8,39 +8,30 @@
 
     <div th:replace="~{fragments/sideBar}"></div>
     <div th:replace="~{fragments/topBar}"></div>
-    <div class="overlay toggle-menu"></div>
+
     <div class="content-wrapper">
         <div class="container-fluid">
-            <div class="card">
+            <div class="card mt-3">
                 <div class="card-body">
-                    <h5 class="card-title">News</h5>
+                    <h5 class="card-title">Ranking by level</h5>
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Level</th>
+                                <th scope="col">Class</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
+                            <tr th:each="hero,rank:${ranking}">
+                                <th scope="row" th:text="${rank.index+1}"></th>
+                                <td><a th:href="@{/hero/details/{heroID}(heroID = ${hero.id})}" class="btn-link"
+                                       th:text="${hero.name}"></a>
+                                </td>
+                                <td th:text="${hero.level}"></td>
+                                <td th:text="${hero.heroClass.name()}"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -50,7 +41,6 @@
         </div>
         <div class="overlay toggle-menu"></div>
     </div>
-</div>
 </div>
 <div th:replace="~{fragments/scripts}">
 </div>

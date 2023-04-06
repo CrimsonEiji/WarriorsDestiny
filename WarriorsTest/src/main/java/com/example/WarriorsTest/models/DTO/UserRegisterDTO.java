@@ -2,12 +2,14 @@ package com.example.WarriorsTest.models.DTO;
 
 import com.example.WarriorsTest.validations.EmailValidation;
 import com.example.WarriorsTest.validations.PasswordMatch;
+import com.example.WarriorsTest.validations.UsernameValidation;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 @PasswordMatch
 @EmailValidation
+@UsernameValidation
 public class UserRegisterDTO {
     @Size(min = 3, max = 20, message = "Username length must be between 3 and 20 characters!")
     private String username;

@@ -31,7 +31,7 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests().requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .requestMatchers("/error/**", "/plugins/**", "/flags/**", "/fonts/**", "/", "/errors", "/auth/login-error").permitAll()
                 .requestMatchers("/auth/login", "/auth/register").anonymous()
-                .requestMatchers("/home").authenticated()
+                .requestMatchers("/home","/hero/creation").authenticated()
                 .requestMatchers("/admin").hasRole(UserRoles.ADMIN.name())
                 .anyRequest()
                 .authenticated()

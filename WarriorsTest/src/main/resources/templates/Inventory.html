@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{fragments/commons::head}">
     <title></title></head>
 
@@ -8,72 +8,22 @@
 
     <div th:replace="~{fragments/sideBar}"></div>
     <div th:replace="~{fragments/topBar}"></div>
-    <div class="content-wrapper">
+    <div class="content-wrapper" th:object="${inventory}">
         <div class="container-fluid">
-
             <div class="row mt-3 text-center">
-                <div class="col-lg-3">
-                    <div class="card">
-                        <div class="card-body" >
-                            <h5 class="card-title">Small Table</h5>
-                                <img src="/images/sword.png" class="inventory-image-icon" alt="image">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
+                <a th:each="item:${inventory}" th:href="@{/items/details/{itemID}(itemID = ${item.id})}"
+                   class="col-lg-3">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Responsive Table</h5>
-                                <img src="/images/potion.png" class="inventory-image-icon" alt="image">
+                            <h5 class="card-title" th:text="${item.name}"></h5>
+                            <img th:if="${equippedItems.contains(item.getId())}" src="/images/equipped.png"
+                                 class="inventory-image-icon-small text-right"
+                                 alt="image">
+                            <img th:src="@{${'/images/' + item.getType().name()+ '.png'}}" class="inventory-image-icon"
+                                 alt="image">
                         </div>
                     </div>
-                </div>
-
-                <div class="col-lg-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Responsive Table</h5>
-                            <img src="/images/staff.png" class="inventory-image-icon" alt="image">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Responsive Table</h5>
-                            <img src="/images/bow.png" class="inventory-image-icon" alt="image">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Responsive Table</h5>
-                            <img src="/images/helmet.png" class="inventory-image-icon" alt="image">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Responsive Table</h5>
-                            <img src="/images/armour.png" class="inventory-image-icon" alt="image">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Responsive Table</h5>
-                            <img src="/images/boots.png" class="inventory-image-icon" alt="image">
-                        </div>
-                    </div>
-                </div>
-
+                </a>
 
             </div>
         </div>

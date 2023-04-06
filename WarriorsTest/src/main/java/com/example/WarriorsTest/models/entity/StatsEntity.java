@@ -16,12 +16,17 @@ public class StatsEntity {
 
     @Column
     private Integer mana;
+    @Column
+    private Integer currentHealth;
 
     @Column
-    private Integer physicalAttack;
+    private Integer currentMana;
 
     @Column
-    private Integer spellAttack;
+    private Integer attack;
+
+    @Column
+    private Integer armour;
 
     @Column
     private Integer strength;
@@ -39,6 +44,24 @@ public class StatsEntity {
     public StatsEntity() {
     }
 
+    public Integer getCurrentHealth() {
+        return currentHealth;
+    }
+
+    public StatsEntity setCurrentHealth(Integer currentHealth) {
+        this.currentHealth = currentHealth;
+        return this;
+    }
+
+    public Integer getCurrentMana() {
+        return currentMana;
+    }
+
+    public StatsEntity setCurrentMana(Integer currentMana) {
+        this.currentMana = currentMana;
+        return this;
+    }
+
     public Long getId() {
         return id;
     }
@@ -48,21 +71,21 @@ public class StatsEntity {
         return this;
     }
 
-    public Integer getPhysicalAttack() {
-        return physicalAttack;
+    public Integer getAttack() {
+        return attack;
     }
 
-    public StatsEntity setPhysicalAttack(Integer physicalAttack) {
-        this.physicalAttack = physicalAttack;
+    public StatsEntity setAttack(Integer physicalAttack) {
+        this.attack = physicalAttack;
         return this;
     }
 
-    public Integer getSpellAttack() {
-        return spellAttack;
+    public Integer getArmour() {
+        return armour;
     }
 
-    public StatsEntity setSpellAttack(Integer spellAttack) {
-        this.spellAttack = spellAttack;
+    public StatsEntity setArmour(Integer spellAttack) {
+        this.armour = spellAttack;
         return this;
     }
 

@@ -3,9 +3,11 @@ package com.example.WarriorsTest.services;
 import com.example.WarriorsTest.models.entity.UserEntity;
 import com.example.WarriorsTest.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -34,6 +36,10 @@ public class UserService {
 
     public Optional<UserEntity> findByEmail(String email){
         return userRepository.findByEmail(email);
+    }
+
+    public List<UserEntity> findByUsernameNot(String username){
+        return userRepository.findByUsernameNot(username);
     }
 }
 
