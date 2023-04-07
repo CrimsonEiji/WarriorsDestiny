@@ -11,7 +11,7 @@ public class EquippedItemsEntity {
     @OneToOne
     private ItemEntity weapon;
     @OneToOne
-    private ItemEntity head;
+    private ItemEntity helmet;
     @OneToOne
     private ItemEntity chest;
     @OneToOne
@@ -30,12 +30,12 @@ public class EquippedItemsEntity {
         return this;
     }
 
-    public ItemEntity getHead() {
-        return head;
+    public ItemEntity getHelmet() {
+        return helmet;
     }
 
-    public EquippedItemsEntity setHead(ItemEntity head) {
-        this.head = head;
+    public EquippedItemsEntity setHelmet(ItemEntity head) {
+        this.helmet = head;
         return this;
     }
 

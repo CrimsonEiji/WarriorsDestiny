@@ -1,7 +1,8 @@
 package com.example.WarriorsTest.models.DTO;
 
 import com.example.WarriorsTest.enums.HeroClass;
-import com.example.WarriorsTest.validations.HeroNameValidation;
+import com.example.WarriorsTest.error_strings.ErrorStrings;
+import com.example.WarriorsTest.validations.anotations.HeroNameValidation;
 import jakarta.validation.constraints.Size;
 
 @HeroNameValidation
@@ -9,7 +10,7 @@ public class HeroCreationDTO {
 
     private HeroClass heroClass;
 
-    @Size(min = 3,max = 20)
+    @Size(min = 3,max = 20,message = ErrorStrings.NAME_LENGTH_ERROR)
     private String name;
 
     public HeroCreationDTO() {

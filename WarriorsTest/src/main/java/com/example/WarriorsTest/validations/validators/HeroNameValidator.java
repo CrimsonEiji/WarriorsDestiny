@@ -1,8 +1,8 @@
-package com.example.WarriorsTest.validations;
+package com.example.WarriorsTest.validations.validators;
 
 import com.example.WarriorsTest.models.DTO.HeroCreationDTO;
-import com.example.WarriorsTest.models.DTO.UserRegisterDTO;
 import com.example.WarriorsTest.services.HeroService;
+import com.example.WarriorsTest.validations.anotations.HeroNameValidation;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

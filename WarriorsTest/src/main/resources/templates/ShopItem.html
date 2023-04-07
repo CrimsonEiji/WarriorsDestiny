@@ -14,9 +14,7 @@
 
     <div class="content-wrapper">
         <div class="container-fluid">
-
-            <div th:if="${isError}" class="card-subtitle font-italic text-center error" th:text="${errorMessage}">
-            </div>
+            <h5 th:if="${isError}" class="card-subtitle font-italic text-center error" th:text="${errorMessage}"></h5>
 
             <div class="row justify-content-md-center text-center">
 
@@ -30,34 +28,14 @@
                     </div>
                 </div>
 
-                <div th:if="${isItemOnUser}" class="col-lg-2">
+                <div class="col-lg-2">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Actions</h5>
-                            <th:block
-                                    th:if="${item.getItemType() != T(com.example.WarriorsTest.enums.ItemType).CONSUMABLE}">
-                                <form th:unless="${isItemEquipped}"
-                                      th:action="@{/items/equip/{itemID}(itemID = ${item.id})}" th:method="post">
-                                    <button type="submit" class="btn btn-light btn-block">Equip</button>
-                                </form>
-                                <form th:if="${isItemEquipped}"
-                                      th:action="@{/items/unEquip/{itemID}(itemID = ${item.id})}" th:method="post">
-                                    <button type="submit" class="btn btn-light btn-block">UnEquip</button>
-                                </form>
-                            </th:block>
-                            <form th:if="${item.getItemType() == T(com.example.WarriorsTest.enums.ItemType).CONSUMABLE}"
-                                  th:action="@{/items/drink/{itemID}(itemID = ${item.id})}" th:method="post">
-                                <button type="submit" class="btn btn-light btn-block">Drink</button>
-                            </form>
 
-                            <form class="mt-3" th:action="@{/items/delete/{itemID}(itemID = ${item.id})}"
+                            <form class="mt-3" th:action="@{/shop/buy/{id}/{item}(id = ${id},item=${item})}"
                                   th:method="post">
-                                <button type="submit" class="btn btn-light btn-block">Delete</button>
-                            </form>
-
-                            <form class="mt-3" th:action="@{/items/sell/{itemID}(itemID = ${item.id})}"
-                                  th:method="post">
-                                <button type="submit" class="btn btn-light btn-block">Sell</button>
+                                <button type="submit" class="btn btn-light btn-block">Buy</button>
                             </form>
 
                         </div>
@@ -65,7 +43,6 @@
                 </div>
 
             </div>
-
 
             <div class="row justify-content-md-center text-center">
 
@@ -86,7 +63,7 @@
                                     </tr>
                                     <tr>
                                         <th scope="row" colspan="2">Type:</th>
-                                        <th colspan="2" th:text="${item.getType().value}"></th>
+                                        <th colspan="2" th:text="${item.getType()}"></th>
                                     </tr>
                                     <tr>
                                         <th scope="row" colspan="2">Attack:</th>
@@ -99,7 +76,7 @@
                                     </tr>
                                     <tr>
                                         <th scope="row" colspan="2">Element:</th>
-                                        <th colspan="2" th:text="${item.getElement().value}"></th>
+                                        <th colspan="2" th:text="${item.getElement()}"></th>
                                     </tr>
                                     <tr>
                                         <th scope="row" colspan="2">Weight:</th>
@@ -107,7 +84,7 @@
                                     </tr>
                                     <tr>
                                         <th scope="row" colspan="2">Material:</th>
-                                        <th colspan="2" th:text="${item.getMaterial().value}"></th>
+                                        <th colspan="2" th:text="${item.getMaterial()}"></th>
                                     </tr>
                                     </tbody>
                                 </table>

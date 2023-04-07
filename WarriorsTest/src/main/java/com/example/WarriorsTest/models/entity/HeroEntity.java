@@ -22,6 +22,9 @@ public class HeroEntity {
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
+    private Integer gold;
+
     @OneToMany
     private List<ItemEntity> inventory;
 
@@ -106,6 +109,15 @@ public class HeroEntity {
 
     public HeroEntity setHeroClass(HeroClass heroClass) {
         this.heroClass = heroClass;
+        return this;
+    }
+
+    public Integer getGold() {
+        return gold;
+    }
+
+    public HeroEntity setGold(Integer gold) {
+        this.gold = gold;
         return this;
     }
 }

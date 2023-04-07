@@ -1,14 +1,9 @@
 package com.example.WarriorsTest.controller;
 
-import com.example.WarriorsTest.models.entity.HeroEntity;
-import com.example.WarriorsTest.models.entity.UserEntity;
 import com.example.WarriorsTest.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.security.Principal;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/")

@@ -1,31 +1,24 @@
-package com.example.WarriorsTest.validations;
+package com.example.WarriorsTest.validations.validators;
 
 import com.example.WarriorsTest.models.DTO.UserRegisterDTO;
-import com.example.WarriorsTest.services.UserService;
+import com.example.WarriorsTest.validations.anotations.PasswordMatch;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class EmailValidator implements ConstraintValidator<EmailValidation, UserRegisterDTO> {
-
-    private final UserService userService;
-
-    public EmailValidator(UserService userService) {
-        this.userService = userService;
-    }
-
+public class PasswordMatcher implements ConstraintValidator<PasswordMatch, UserRegisterDTO> {
     @Override
-    public void initialize(EmailValidation constraintAnnotation) {
+    public void initialize(PasswordMatch constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
     @Override
     public boolean isValid(UserRegisterDTO userRegisterDTO, ConstraintValidatorContext context) {
 
-
-        if (userService.findByEmail(userRegisterDTO.getEmail()).isEmpty()) return true;
+        if (userRegisterDTO.getPassword() != null &&
+        userRegisterDTO.getPassword().equals(userRegisterDTO.getConfirmPassword())) return true;
 
         context.buildConstraintViolationWithTemplate(context.getDefaultConstraintMessageTemplate())
-                .addPropertyNode("email")
+                .addPropertyNode("confirmPassword")
                 .addConstraintViolation()
                 .disableDefaultConstraintViolation();
         return false;

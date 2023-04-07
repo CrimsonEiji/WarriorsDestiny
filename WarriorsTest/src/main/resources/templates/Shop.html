@@ -1,19 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{fragments/commons::head}">
-  <title></title></head>
+    <title></title></head>
 
 <body class="bg-theme bg-theme2">
 <div id="wrapper">
 
-  <div th:replace="~{fragments/sideBar}"></div>
+    <div th:replace="~{fragments/sideBar}"></div>
+    <div th:replace="~{fragments/topBar}"></div>
+    <div class="content-wrapper" th:object="${shopList}">
 
-  <div th:replace="~{fragments/topBar}"></div>
+        <h5 th:if="${isError}" class="card-subtitle font-italic text-center error" th:text="${errorMessage}"></h5>
+        <div class="container-fluid">
+            <div class="row mt-3 text-center">
 
-  <div th:replace="~{fragments/scripts}"></div>
-  <div class="overlay toggle-menu"></div>
-
-
+                <th:block th:each="item,iter:${shopList}">
+                    <a th:if="${item != null}"
+                       th:href="@{/shop/details/{itemID}/{item}(item = ${item},itemID = ${iter.index})}"
+                       class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${item.name}"></h5>
+                                <img th:src="@{${'/images/' + item.getType().name()+ '.png'}}"
+                                     class="inventory-image-icon"
+                                     alt="image">
+                            </div>
+                        </div>
+                    </a>
+                </th:block>
+            </div>
+        </div>
+        <div class="overlay toggle-menu"></div>
+    </div>
 </div>
+
+<div th:replace="~{fragments/scripts}"></div>
 </body>
 </html>

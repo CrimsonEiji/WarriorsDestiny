@@ -1,8 +1,9 @@
 package com.example.WarriorsTest.models.DTO;
 
-import com.example.WarriorsTest.validations.EmailValidation;
-import com.example.WarriorsTest.validations.PasswordMatch;
-import com.example.WarriorsTest.validations.UsernameValidation;
+import com.example.WarriorsTest.error_strings.ErrorStrings;
+import com.example.WarriorsTest.validations.anotations.EmailValidation;
+import com.example.WarriorsTest.validations.anotations.PasswordMatch;
+import com.example.WarriorsTest.validations.anotations.UsernameValidation;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -11,14 +12,14 @@ import jakarta.validation.constraints.Size;
 @EmailValidation
 @UsernameValidation
 public class UserRegisterDTO {
-    @Size(min = 3, max = 20, message = "Username length must be between 3 and 20 characters!")
+    @Size(min = 3, max = 20, message = ErrorStrings.USERNAME_LENGTH_ERROR)
     private String username;
-    @Size(min = 3, max = 20, message = "Password length must be between 3 and 20 characters!")
+    @Size(min = 3, max = 20, message = ErrorStrings.PASSWORD_LENGTH_ERROR)
     private String password;
-    @Size(min = 3, max = 20, message = "Password length must be between 3 and 20 characters!")
+    @Size(min = 3, max = 20, message = ErrorStrings.PASSWORD_LENGTH_ERROR)
     private String confirmPassword;
-    @Email(message = "Input should be a valid email!")
-    @NotEmpty(message = "Email cannot be empty!")
+    @Email(message = ErrorStrings.INVALID_EMAIL)
+    @NotEmpty(message = ErrorStrings.EMAIL_EMPTY)
     private String email;
 
     public UserRegisterDTO() {

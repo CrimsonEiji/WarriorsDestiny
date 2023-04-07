@@ -1,5 +1,7 @@
-package com.example.WarriorsTest.validations;
+package com.example.WarriorsTest.validations.anotations;
 
+import com.example.WarriorsTest.error_strings.ErrorStrings;
+import com.example.WarriorsTest.validations.validators.EmailValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -12,7 +14,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Constraint(validatedBy = EmailValidator.class)
 public @interface EmailValidation {
-    String message() default "Email already exist!";
+    String message() default ErrorStrings.EMAIL_ALREADY_EXIST;
 
     Class<?>[] groups() default {};
 
