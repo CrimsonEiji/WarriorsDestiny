@@ -4,10 +4,10 @@ import com.example.WarriorsTest.enums.HeroClass;
 import com.example.WarriorsTest.enums.Type;
 import com.example.WarriorsTest.error_strings.ErrorStrings;
 
-public class ItemIncompatible extends RuntimeException implements ItemException {
+public class ItemIncompatibleException extends RuntimeException implements ItemException {
     private final long id;
 
-    public ItemIncompatible(HeroClass heroClass, Type type, long id) {
+    public ItemIncompatibleException(HeroClass heroClass, Type type, long id) {
         super(String.format(ErrorStrings.ITEM_INCOMPATIBLE_EXCEPTION, heroClass.name(), type.name()));
         this.id = id;
     }

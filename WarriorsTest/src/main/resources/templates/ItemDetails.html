@@ -37,27 +37,31 @@
                             <th:block
                                     th:if="${item.getItemType() != T(com.example.WarriorsTest.enums.ItemType).CONSUMABLE}">
                                 <form th:unless="${isItemEquipped}"
-                                      th:action="@{/items/equip/{itemID}(itemID = ${item.id})}" th:method="post">
+                                      th:action="@{/inventory/equip/{itemID}(itemID = ${item.id})}" th:method="post">
                                     <button type="submit" class="btn btn-light btn-block">Equip</button>
                                 </form>
                                 <form th:if="${isItemEquipped}"
-                                      th:action="@{/items/unEquip/{itemID}(itemID = ${item.id})}" th:method="post">
+                                      th:action="@{/inventory/unEquip/{itemID}(itemID = ${item.id})}" th:method="post">
                                     <button type="submit" class="btn btn-light btn-block">UnEquip</button>
                                 </form>
                             </th:block>
+
                             <form th:if="${item.getItemType() == T(com.example.WarriorsTest.enums.ItemType).CONSUMABLE}"
                                   th:action="@{/items/drink/{itemID}(itemID = ${item.id})}" th:method="post">
                                 <button type="submit" class="btn btn-light btn-block">Drink</button>
                             </form>
 
-                            <form class="mt-3" th:action="@{/items/delete/{itemID}(itemID = ${item.id})}"
+                            <form class="mt-3" sec:authorize="hasRole('MODERATOR')"
+                                  th:action="@{/inventory/delete/{itemID}(itemID = ${item.id})}"
                                   th:method="post">
                                 <button type="submit" class="btn btn-light btn-block">Delete</button>
                             </form>
 
-                            <form class="mt-3" th:action="@{/items/sell/{itemID}(itemID = ${item.id})}"
+                            <form class="mt-3" th:action="@{/inventory/sell/{itemID}(itemID = ${item.id})}"
                                   th:method="post">
-                                <button type="submit" class="btn btn-light btn-block">Sell</button>
+                                <button type="submit" class="btn btn-light btn-block"
+                                        th:text="${'Sell: price ' + item.getPrice() + ' gold'}">Sell
+                                </button>
                             </form>
 
                         </div>
@@ -89,7 +93,18 @@
                                         <th colspan="2" th:text="${item.getType().value}"></th>
                                     </tr>
                                     <tr>
-                                        <th scope="row" colspan="2">Attack:</th>
+                                        <th scope="row" colspan="2"
+                                            th:if="${item.getItemType() == T(com.example.WarriorsTest.enums.ItemType).WEAPON}">
+                                            Attack:
+                                        </th>
+                                        <th scope="row" colspan="2"
+                                            th:if="${item.getItemType() == T(com.example.WarriorsTest.enums.ItemType).ARMOR}">
+                                            Defence:
+                                        </th>
+                                        <th scope="row" colspan="2"
+                                            th:if="${item.getItemType() == T(com.example.WarriorsTest.enums.ItemType).CONSUMABLE}">
+                                            Regeneration:
+                                        </th>
                                         <th colspan="2" th:text="${item.getStat()}"></th>
                                     </tr>
 

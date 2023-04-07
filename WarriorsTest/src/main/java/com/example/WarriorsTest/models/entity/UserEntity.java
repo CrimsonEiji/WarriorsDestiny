@@ -27,6 +27,8 @@ public class UserEntity {
 
     @OneToOne(fetch = FetchType.EAGER)
     private HeroEntity hero;
+    @Column
+    private Boolean isInBattle;
 
     public HeroEntity getHero() {
         return hero;
@@ -34,6 +36,15 @@ public class UserEntity {
 
     public UserEntity setHero(HeroEntity hero) {
         this.hero = hero;
+        return this;
+    }
+
+    public Boolean getInBattle() {
+        return isInBattle;
+    }
+
+    public UserEntity setInBattle(Boolean inBattle) {
+        isInBattle = inBattle;
         return this;
     }
 

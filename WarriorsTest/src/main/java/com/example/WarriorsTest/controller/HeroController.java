@@ -32,7 +32,7 @@ public class HeroController {
 
     @GetMapping("/error")
     public String getHeroDoesntExistPage() {
-        return "HeroNotFoundErrorPage";
+        return "error/HeroNotFoundErrorPage";
     }
 
 

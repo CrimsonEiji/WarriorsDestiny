@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/commons::head}">
+    <title></title></head>
+
+<body class="bg-theme bg-theme2">
+<div id="wrapper">
+
+    <div th:replace="~{fragments/sideBar}"></div>
+
+    <div th:replace="~{fragments/topBar}"></div>
+
+    <div th:replace="~{fragments/scripts}"></div>
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <th:block th:if=" ${isDead}">
+                <div class="row justify-content-md-center text-center">
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"> Game Over</h5>
+                                <h5 class="card-title">You've died!</h5>
+                                <h5 class="card-title" th:text="${hero.getName()}"></h5>
+                                <h6 class="card-title" th:text="${'level - ' + hero.getLevel()}"></h6>
+                                <img th:src="@{${'/images/' + hero.getHeroClass().name()+ '.png'}}"
+                                     class="inventory-image-icon"
+                                     alt="image">
+                                <div class="card-body">
+                                    <h5 class="card-title">Stats</h5>
+                                    <div class="table-responsive">
+                                        <table class="table table-sm">
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row" colspan="2">Health:</th>
+                                                <th colspan="2"
+                                                    th:text="${hero.stats.getHealth()}"></th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" colspan="2">Mana:</th>
+                                                <th colspan="2" th:text="${hero.stats.getMana()}"></th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" colspan="2">Attack:</th>
+                                                <th colspan="2"
+                                                    th:text="${hero.stats.getAttack()}"></th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" colspan="2">Armour:</th>
+                                                <th colspan="2"
+                                                    th:text="${hero.stats.getArmour()}"></th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" colspan="2">Strength:</th>
+                                                <th colspan="2"
+                                                    th:text="${hero.stats.getStrength()}"></th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" colspan="2">Intellect:</th>
+                                                <th colspan="2"
+                                                    th:text="${hero.stats.getIntellect()}"></th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" colspan="2">Agility:</th>
+                                                <th colspan="2"
+                                                    th:text="${hero.stats.getAgility()}"></th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" colspan="2">Dodge:</th>
+                                                <th colspan="2"
+                                                    th:text="${hero.stats.getDodgeChance()}"></th>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <form class="mt-3" th:action="@{/hero/creation}"
+                                      th:method="post">
+                                    <button type="submit" class="btn btn-light btn-block">Create new hero</button>
+                                </form>
+                                <div class="card-body">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </th:block>
+
+            <th:block th:if=" ${!isDead}">
+                <div class="row justify-content-md-center text-center">
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title" th:each="enemy :${listEnemy}"
+                                    th:text="${enemy.name + ' - level - '+enemy.level +' - killed'}"></h5>
+                                <h5 class="card-title"
+                                    th:text="${'You Found ' + goldReward + ' gold.'}"></h5>
+                                <div class="card-body">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h5>REWARDS</h5>
+                <div class="row mt-3 text-center">
+                    <a th:each="item:${rewardItems}" class="col-lg-3"
+                       th:href="@{/items/details/{itemID}(itemID = ${item.getId()})}">
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${item.getName()}"></h5>
+                                <img th:src="@{${'/images/' + item.getType().name()+ '.png'}}"
+                                     class="inventory-image-icon"
+                                     alt="image">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </th:block>
+        </div>
+    </div>
+
+
+    <div class="overlay toggle-menu"></div>
+
+</div>
+</body>
+</html>

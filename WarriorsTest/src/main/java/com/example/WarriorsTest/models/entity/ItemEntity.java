@@ -22,6 +22,8 @@ public class ItemEntity {
 
     @Column(nullable = false)
     private Rarity rarity;
+    @Column(nullable = false)
+    private int price;
 
     @Column(nullable = false)
     private String description;
@@ -40,6 +42,15 @@ public class ItemEntity {
 
     @Enumerated(EnumType.STRING)
     private Element element;
+
+    public int getPrice() {
+        return price;
+    }
+
+    public ItemEntity setPrice(int price) {
+        this.price = price;
+        return this;
+    }
 
     public Material getMaterial() {
         return material;

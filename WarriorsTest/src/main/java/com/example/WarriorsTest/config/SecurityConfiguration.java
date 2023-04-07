@@ -29,10 +29,11 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, SecurityContextRepository securityContextRepository) throws Exception {
         http.authorizeHttpRequests().requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                .requestMatchers("/error/**", "/plugins/**", "/flags/**", "/fonts/**", "/", "/errors", "/auth/login-error").permitAll()
+                .requestMatchers("/error/**", "/plugins/**", "/flags/**", "/fonts/**", "/", "/errors", "/auth/login-error","/api/hero-stats").permitAll()
                 .requestMatchers("/auth/login", "/auth/register").anonymous()
-                .requestMatchers("/home","/hero/creation").authenticated()
-                .requestMatchers("/admin").hasRole(UserRoles.ADMIN.name())
+                .requestMatchers("/home", "/hero/creation", "/spells/**").authenticated()
+                .requestMatchers("/admin/**").hasRole(UserRoles.ADMIN.name())
+                .requestMatchers("/items/delete/**").hasRole(UserRoles.MODERATOR.name())
                 .anyRequest()
                 .authenticated()
                 .and()

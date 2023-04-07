@@ -20,6 +20,12 @@ public class HeroEntity {
     private int level;
 
     @Column(nullable = false)
+    private int experience;
+
+    @Column(nullable = false)
+    private int experienceNeededToLevelUp;
+
+    @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
@@ -28,14 +34,49 @@ public class HeroEntity {
     @OneToMany
     private List<ItemEntity> inventory;
 
-    @OneToMany
-    private List<SpellEntity> spells;
+    @OneToOne
+    private SpellEntity spell;
 
     @OneToOne
     private EquippedItemsEntity equipped;
+    @OneToOne
+    private StatsEntity stats;
 
+    @OneToOne
     public EquippedItemsEntity getEquipped() {
         return equipped;
+    }
+
+
+    public HeroEntity updateExperience(int experience) {
+        this.experience += experience;
+        while (this.experience >= experienceNeededToLevelUp) {
+            this.experience -= experienceNeededToLevelUp;
+            experienceNeededToLevelUp += 20;
+            this.level += 1;
+            levelUp();
+        }
+        return this;
+    }
+
+    public int getExperienceNeededToLevelUp() {
+        return experienceNeededToLevelUp;
+    }
+
+    public HeroEntity setExperienceNeededToLevelUp(int experienceNeededToLevelUp) {
+        this.experienceNeededToLevelUp = experienceNeededToLevelUp;
+        return this;
+    }
+
+    public void levelUp() {
+        stats
+                .setHealth(stats.getHealth() + 10)
+                .setMana(stats.getMana() + 10)
+                .setCurrentHealth(stats.getHealth())
+                .setCurrentMana(stats.getMana())
+                .setAttack(stats.getAttack() + 1)
+                .setArmour(stats.getArmour() + 1);
+
     }
 
     public HeroEntity setEquipped(EquippedItemsEntity equipped) {
@@ -43,8 +84,15 @@ public class HeroEntity {
         return this;
     }
 
-    @OneToOne
-    private StatsEntity stats;
+
+    public int getExperience() {
+        return experience;
+    }
+
+    public HeroEntity setExperience(int experience) {
+        this.experience = experience;
+        return this;
+    }
 
 
     public void setId(Long id) {
@@ -85,12 +133,12 @@ public class HeroEntity {
         return this;
     }
 
-    public List<SpellEntity> getSpells() {
-        return spells;
+    public SpellEntity getSpell() {
+        return spell;
     }
 
-    public HeroEntity setSpells(List<SpellEntity> spells) {
-        this.spells = spells;
+    public HeroEntity setSpell(SpellEntity spells) {
+        this.spell = spells;
         return this;
     }
 

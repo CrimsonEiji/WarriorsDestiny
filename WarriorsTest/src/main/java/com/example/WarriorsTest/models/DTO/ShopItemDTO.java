@@ -26,6 +26,17 @@ public class ShopItemDTO {
 
     private Element element;
 
+    private int price;
+
+    public int getPrice() {
+        return price;
+    }
+
+    public ShopItemDTO setPrice(int price) {
+        this.price = price;
+        return this;
+    }
+
     public ShopItemDTO() {
     }
 

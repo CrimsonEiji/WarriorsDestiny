@@ -8,8 +8,10 @@
 
     <div th:replace="~{fragments/sideBar}"></div>
     <div th:replace="~{fragments/topBar}"></div>
+
     <div class="content-wrapper" th:object="${inventory}">
         <div class="container-fluid">
+            <div th:if="${isError}" class="card-subtitle font-italic text-center error" th:text="${errorMessage}"></div>
             <div class="row mt-3 text-center">
                 <a th:each="item:${inventory}" th:href="@{/items/details/{itemID}(itemID = ${item.id})}"
                    class="col-lg-3">

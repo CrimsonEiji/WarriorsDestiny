@@ -1,6 +1,8 @@
 package com.example.WarriorsTest.services;
 
+import com.example.WarriorsTest.exeptions.shop.NotEnoughGoldException;
 import com.example.WarriorsTest.models.DTO.ShopItemDTO;
+import com.example.WarriorsTest.models.entity.HeroEntity;
 import com.example.WarriorsTest.models.entity.ItemEntity;
 import com.example.WarriorsTest.models.entity.UserEntity;
 import org.modelmapper.ModelMapper;
@@ -23,15 +25,18 @@ public class ShopService {
         this.userService = userService;
     }
 
-    public void buyItem(int id, String username) {
+    public void buyItem(int id, String username, int price,String itemObjectName) {
         UserEntity userEntity = userService.findByUsername(username);
+
+        if (userEntity.getHero().getGold() < price) throw new NotEnoughGoldException(id,itemObjectName);
 
         ShopItemDTO shopItemDTO = list.get(id);
         ItemEntity itemEntity = modelMapper.map(shopItemDTO, ItemEntity.class);
 
         itemService.saveAndFlush(itemEntity);
-
-        userEntity.getHero().getInventory().add(itemEntity);
+        HeroEntity heroEntity = userEntity.getHero();
+        heroEntity.getInventory().add(itemEntity);
+        heroEntity.setGold(heroEntity.getGold() - price);
         userService.saveAndFlush(userEntity);
 
         list.remove(shopItemDTO);

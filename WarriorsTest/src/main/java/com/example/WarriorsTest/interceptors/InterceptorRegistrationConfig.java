@@ -24,7 +24,9 @@ public class InterceptorRegistrationConfig implements WebMvcConfigurer {
                         "/inventory/**",
                         "/ranking/**",
                         "/shop/**",
-                        "/battle/**"
+                        "/battle/**",
+                        "/items/**",
+                        "/spells/**"
                 )
                 .excludePathPatterns("/hero/error");
     }

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/commons::head}">
+    <title></title></head>
+
+<style>
+    select option {
+        margin: 40px;
+        background: rgba(0, 0, 0, 0);
+        color: #000;
+    }
+</style>
+<body class="bg-theme bg-theme2">
+
+<div id="wrapper">
+
+    <div th:replace="~{fragments/sideBar}"></div>
+    <div th:replace="~{fragments/topBar}"></div>
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="card card-authentication1 mx-auto my-5">
+                <div class="card-body">
+                    <div class="card-content p-2">
+                        <div class="card-title text-uppercase text-center py-3">Add user role</div>
+                        <h5 th:if="${(isError!= null && isError) && (isAdd!= null && isAdd)}"
+                            class="card-subtitle font-italic text-center error"
+                            th:text="${errorMessage}"></h5>
+                        <br>
+                        <form th:object="${userRoleAdd}" th:action="@{/admin/addUserRole}" th:method="post">
+                            <div class="form-group">
+                                <label for="nameADD" class="sr-only">Username</label>
+                                <div class="position-relative   ">
+                                    <input th:field="*{username}" th:errorclass="'alert-danger'" required minlength="3"
+                                           id="nameADD" maxlength="20" type="text"
+                                           name="name"
+                                           class="form-control input-shadow" placeholder="Enter username">
+                                </div>
+                                <small class="text-danger" th:errors="*{userRole}"></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="roleADD" class="sr-only">Class class</label>
+                                <div class="position-relative ">
+                                    <select th:field="*{userRole}" id="roleADD" class="form-control form-control-sm"
+                                            required>
+                                        <option th:each="role : ${T(com.example.WarriorsTest.enums.UserRoles).values()}"
+                                                th:value="${role}" th:text="${role}"></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-light btn-block">ADD</button>
+                            <div class="form-row mt-4">
+                            </div>
+                            <input
+                                    type="hidden"
+                                    th:name="${_csrf.parameterName}"
+                                    th:value="${_csrf.token}"/>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="card card-authentication1 mx-auto my-5">
+                <div class="card-body">
+                    <div class="card-content p-2">
+                        <div class="card-title text-uppercase text-center py-3">Remove user role</div>
+                        <h5 th:if="${(isError!= null && isError) && (isAdd!= null && !isAdd)}"
+                            class="card-subtitle font-italic text-center error"
+                            th:text="${errorMessage}"></h5>
+                        <br>
+                        <form th:object="${userRoleRemove}" th:action="@{/admin/removeUserRole}" th:method="post">
+                            <div class="form-group">
+                                <label for="name" class="sr-only">Username</label>
+                                <div class="position-relative   ">
+                                    <input th:field="*{username}" required minlength="3"
+                                           maxlength="20" type="text"
+                                           id="name" name="name"
+                                           class="form-control input-shadow" placeholder="Enter username">
+                                </div>
+                                <small class="text-danger" th:errors="*{userRole}"></small>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="class" class="sr-only">Class class</label>
+                                <div class="position-relative ">
+                                    <select th:field="*{userRole}" id="class" class="form-control form-control-sm"
+                                            required>
+                                        <option disabled selected value="">Select hero class</option>
+                                        <option th:each="role : ${T(com.example.WarriorsTest.enums.UserRoles).values()}"
+                                                th:value="${role}" th:text="${role}"></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-light btn-block">Remove</button>
+                            <div class="form-row mt-4">
+                            </div>
+                            <input
+                                    type="hidden"
+                                    th:name="${_csrf.parameterName}"
+                                    th:value="${_csrf.token}"/>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="overlay toggle-menu"></div>
+
+</div>
+
+<div th:replace="~{fragments/scripts}">
+</div>
+
+</body>
+</html>

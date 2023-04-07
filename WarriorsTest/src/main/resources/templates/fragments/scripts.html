@@ -1,9 +1,10 @@
-<div th:fragment="scripts">
+<div th:fragment="scripts" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/sidebar-menu.js"></script>
     <script src="/js/app-script.js"></script>
+    <script sec:authorize="isAuthenticated()" src="/js/fetch.js"></script>
 
 </div>

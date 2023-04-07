@@ -2954,6 +2954,9 @@ table.grid td {
 .text-primary {
     color: #7934f3!important;
 }
+.text-gold {
+    color: #FFD700!important;
+}
 .text-success {
     color: #04b962!important;
 }

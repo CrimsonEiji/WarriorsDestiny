@@ -12,6 +12,8 @@ public class UserItemDTO {
 
     private int durability;
 
+    private int price;
+
     private Rarity rarity;
 
     private String description;
@@ -27,6 +29,15 @@ public class UserItemDTO {
     private Element element;
 
     public UserItemDTO() {
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public UserItemDTO setPrice(int price) {
+        this.price = price;
+        return this;
     }
 
     public Long getId() {

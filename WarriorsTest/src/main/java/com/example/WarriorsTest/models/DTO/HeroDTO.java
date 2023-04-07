@@ -16,7 +16,7 @@ public class HeroDTO {
 
     private List<ItemEntity> inventory;
 
-    private List<SpellEntity> spells;
+    private SpellEntity spell;
 
     private StatsEntity stats;
 
@@ -59,12 +59,12 @@ public class HeroDTO {
         return this;
     }
 
-    public List<SpellEntity> getSpells() {
-        return spells;
+    public SpellEntity getSpell() {
+        return spell;
     }
 
-    public HeroDTO setSpells(List<SpellEntity> spells) {
-        this.spells = spells;
+    public HeroDTO setSpell(SpellEntity spell) {
+        this.spell = spell;
         return this;
     }
 

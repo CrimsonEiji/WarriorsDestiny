@@ -16,6 +16,7 @@ public class StatsEntity {
 
     @Column
     private Integer mana;
+
     @Column
     private Integer currentHealth;
 

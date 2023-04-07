@@ -43,15 +43,17 @@ public class Scheduled {
         }
     }
 
-    @org.springframework.scheduling.annotation.Scheduled(cron = "10/10 * * * * *")
+    @org.springframework.scheduling.annotation.Scheduled(cron = "0 */10 * * * *")
     public void refreshShop() {
         list.clear();
 
         RandomItemGenerator randomItemGenerator = new RandomItemGenerator();
+        Random randomPrice = new Random();
         for (int i = 0; i < 40; i++) {
             Random random = new Random();
             ShopItemDTO shopItemDTO = modelMapper
-                    .map(randomItemGenerator.generate(random.nextInt(0, 100)), ShopItemDTO.class);
+                    .map(randomItemGenerator.generate(random.nextInt(0, 100)), ShopItemDTO.class)
+                    .setPrice(randomPrice.nextInt(1000,1000000));
 
             list.add(shopItemDTO);
         }

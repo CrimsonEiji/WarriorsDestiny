@@ -19,8 +19,9 @@ public class RandomItemGenerator {
         double weight = getWeight(type, material);
         int durability = getDurability(rarity);
         String name = generateName(rarity, type, element);
-        stat+= level*2;
+        stat += level * 2;
         String description = generateDescription(type, element);
+        int price = level * 10;
         return new ItemEntity()
                 .setItemType(itemType)
                 .setType(type)
@@ -31,24 +32,25 @@ public class RandomItemGenerator {
                 .setWeight(weight)
                 .setStat(stat)
                 .setRarity(rarity)
-                .setMaterial(material);
+                .setMaterial(material)
+                .setPrice(price);
     }
 
     private String generateName(Rarity rarity, Type type, Element element) {
         String format = "%s %s of %s";
         if (element == Element.NONE)
-            return String.format(format, rarity.name(), type.name(), "").replace("of","");
+            return String.format(format, rarity.name(), type.value, "").replace("of", "");
 
 
-        return String.format(format, rarity.name(), type.name(), element.name());
+        return String.format(format, rarity.name(), type.value, element.value);
     }
 
     private String generateDescription(Type type, Element element) {
         String format = "%s made of %s element";
-        if (element == Element.NONE){
+        if (element == Element.NONE) {
             return String.format("%s", type.name());
         }
-        return String.format(format, type.name(), element.name());
+        return String.format(format, type.value, element.value);
     }
 
     private ItemType getRandomItemType(double chance) {
@@ -60,10 +62,6 @@ public class RandomItemGenerator {
             return ItemType.WEAPON;
         }
     }
-
-//    private String getRandomDescription(){
-//
-//    }
 
     private Material getRandomMaterial(double chance, ItemType itemType, Type type) {
         if (itemType == ItemType.WEAPON && type == Type.SWORD) return Material.STEAL;

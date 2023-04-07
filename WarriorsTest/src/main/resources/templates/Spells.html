@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/commons::head}">
+    <title></title></head>
+
+<style>
+    select option {
+        margin: 40px;
+        background: rgba(0, 0, 0, 0);
+        color: #000;
+    }
+</style>
+<body class="bg-theme bg-theme2">
+
+<div id="wrapper">
+
+    <div th:replace="~{fragments/sideBar}"></div>
+    <div th:replace="~{fragments/topBar}"></div>
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="card card-authentication1 mx-auto my-5">
+                <div class="card-body">
+                    <div class="card-content p-2">
+                        <div class="card-title text-center py-3">Spells</div>
+                        <form th:each="spell : ${spells}" th:method="post"
+                              th:action="@{/spells/equip/{spellID}(spellID = ${spell.id})}">
+                            <div class="form-group">
+                                <div class="position-relative has-icon-right">
+                                    <p class="text-center" th:text="${spell.name}"></p>
+                                    <button type="submit" class="btn btn-light btn-block">Equip</button>
+                                    <div th:if="${spell.id == equippedSpell}" class="form-control-position">
+                                        <img src="/images/equipped.png" class="inventory-image-icon-small">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="overlay toggle-menu"></div>
+
+</div>
+
+<div th:replace="~{fragments/scripts}">
+</div>
+
+</body>
+</html>

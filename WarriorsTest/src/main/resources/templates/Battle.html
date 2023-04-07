@@ -1,19 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head th:replace="~{fragments/commons::head}">
-  <title></title></head>
+    <title></title></head>
 
 <body class="bg-theme bg-theme2">
 <div id="wrapper">
 
-  <div th:replace="~{fragments/sideBar}"></div>
+    <div th:replace="~{fragments/sideBar}"></div>
 
-  <div th:replace="~{fragments/topBar}"></div>
+    <div th:replace="~{fragments/topBar}"></div>
 
-  <div th:replace="~{fragments/scripts}"></div>
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="card card-authentication1 mx-auto my-5">
+                <div class="card-body">
+                    <div class="card-content p-2">
+                        <div class="card-title text-center py-3">ADVENTURE INTO THE WILD LANDS</div>
+                        <form th:action="@{/battle/start}" th:method="post">
+                            <button type="submit" class="btn btn-light btn-block">START!</button>
+                        </form>
+                        <div class="form-row mt-4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="~{fragments/scripts}"></div>
 
 
-  <div class="overlay toggle-menu"></div>
+    <div class="overlay toggle-menu"></div>
 
 
 </div>
