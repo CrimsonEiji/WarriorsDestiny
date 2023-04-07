@@ -29,9 +29,9 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, SecurityContextRepository securityContextRepository) throws Exception {
         http.authorizeHttpRequests().requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                .requestMatchers("/error/**", "/plugins/**", "/flags/**", "/fonts/**", "/", "/errors", "/auth/login-error","/api/hero-stats").permitAll()
+                .requestMatchers("/error/**", "/plugins/**", "/flags/**", "/fonts/**", "/", "/errors", "/auth/login-error", "/api/hero-stats").permitAll()
                 .requestMatchers("/auth/login", "/auth/register").anonymous()
-                .requestMatchers("/home", "/hero/creation", "/spells/**").authenticated()
+                .requestMatchers("/hero/**", "/spells/**").authenticated()
                 .requestMatchers("/admin/**").hasRole(UserRoles.ADMIN.name())
                 .requestMatchers("/items/delete/**").hasRole(UserRoles.MODERATOR.name())
                 .anyRequest()
@@ -45,7 +45,7 @@ public class SecurityConfiguration {
                 .loginPage("/auth/login")
                 .usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
                 .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
-                .defaultSuccessUrl("/home")
+                .defaultSuccessUrl("/hero/details/my-hero")
                 .failureForwardUrl("/auth/login-error")
                 .and()
                 .logout()

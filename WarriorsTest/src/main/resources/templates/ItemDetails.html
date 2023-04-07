@@ -47,7 +47,7 @@
                             </th:block>
 
                             <form th:if="${item.getItemType() == T(com.example.WarriorsTest.enums.ItemType).CONSUMABLE}"
-                                  th:action="@{/items/drink/{itemID}(itemID = ${item.id})}" th:method="post">
+                                  th:action="@{/inventory/equip/{itemID}(itemID = ${item.id})}" th:method="post">
                                 <button type="submit" class="btn btn-light btn-block">Drink</button>
                             </form>
 

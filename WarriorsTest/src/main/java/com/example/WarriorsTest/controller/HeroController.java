@@ -57,6 +57,20 @@ public class HeroController {
         return "HeroDetails";
     }
 
+    @GetMapping("/details/my-hero")
+    public String getMyHeroDetails(Model model, Principal principal) {
+        HeroEntity hero = userService.findByUsername(principal.getName()).getHero();
+
+        HeroDTO heroDTO = modelMapper.map(hero, HeroDTO.class);
+
+        EquippedItemsDTO equippedItemsDTO = modelMapper.map(hero.getEquipped(), EquippedItemsDTO.class);
+
+        model.addAttribute("hero", heroDTO);
+        model.addAttribute("equippedItems", equippedItemsDTO.getEquippedItems());
+
+        return "HeroDetails";
+    }
+
     @PostMapping("/creation")
     public String postHeroCreation(@Valid @ModelAttribute HeroCreationDTO heroCreationDTO,
                                    BindingResult bindingResult,
@@ -70,7 +84,7 @@ public class HeroController {
 
         heroService.createHero(principal.getName(), heroCreationDTO);
 
-        return "redirect:/home";
+        return "redirect:/hero/details/my-hero";
     }
 
     @ModelAttribute("heroCreationDTO")

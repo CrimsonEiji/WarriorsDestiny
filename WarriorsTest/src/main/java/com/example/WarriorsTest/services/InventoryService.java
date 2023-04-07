@@ -90,6 +90,24 @@ public class InventoryService {
                 equipped.setChest(item);
                 hero.getStats().setArmour(hero.getStats().getArmour() + item.getStat());
             }
+            case HEALTH_POTION -> {
+                int healthToSet = hero.getStats().getCurrentHealth() +item.getStat();
+                if (healthToSet >hero.getStats().getHealth()){
+                    healthToSet = hero.getStats().getHealth();
+                }
+                hero.getStats().setCurrentHealth(healthToSet);
+                hero.getInventory().remove(item);
+                itemService.deleteItem(item);
+            }
+            case MANA_POTION -> {
+                int manaToSet = hero.getStats().getCurrentMana() +item.getStat();
+                if (manaToSet>hero.getStats().getMana()){
+                    manaToSet = hero.getStats().getMana();
+                }
+                hero.getStats().setCurrentMana(manaToSet);
+                hero.getInventory().remove(item);
+                itemService.deleteItem(item);
+            }
         }
         heroService.saveAndFlush(hero);
     }

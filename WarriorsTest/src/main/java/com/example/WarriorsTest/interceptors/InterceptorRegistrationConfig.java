@@ -20,7 +20,7 @@ public class InterceptorRegistrationConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
 
         registry.addInterceptor(interceptor)
-                .addPathPatterns("/home/**",
+                .addPathPatterns("/hero/details/my-hero",
                         "/inventory/**",
                         "/ranking/**",
                         "/shop/**",
