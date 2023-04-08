@@ -147,9 +147,10 @@ public class InventoryService {
         heroService.saveAndFlush(hero);
     }
 
-    public void sellItem(String username, long itemID, int soldItemGold) {
+    public void sellItem(String username, long itemID) {
         HeroEntity hero = userService.findByUsername(username).getHero();
-        hero.setGold(hero.getGold() + soldItemGold);
+        ItemEntity item = itemService.findById(itemID);
+        hero.setGold(hero.getGold() + item.getPrice());
         deleteItem(username, itemID);
         heroService.saveAndFlush(hero);
     }

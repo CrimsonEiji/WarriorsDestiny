@@ -27,7 +27,8 @@
                             <div class="form-group">
                                 <div class="position-relative has-icon-right">
                                     <p class="text-center" th:text="${spell.name}"></p>
-                                    <button type="submit" class="btn btn-light btn-block">Equip</button>
+                                    <button type="submit" th:if="${spell.id == equippedSpell}" class="btn btn-light btn-block">unequip</button>
+                                    <button type="submit" th:unless="${spell.id == equippedSpell}" class="btn btn-light btn-block">equip</button>
                                     <div th:if="${spell.id == equippedSpell}" class="form-control-position">
                                         <img src="/images/equipped.png" class="inventory-image-icon-small">
                                     </div>

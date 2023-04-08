@@ -10,7 +10,7 @@ public class NewsController {
 
     @GetMapping
     public String getNews(){
-        return "News";
+        return "index";
     }
 
 

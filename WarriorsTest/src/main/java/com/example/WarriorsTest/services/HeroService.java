@@ -66,6 +66,10 @@ public class HeroService {
         return heroRepository.findAll(
                 PageRequest.of(page, 100, Sort.by(Sort.Direction.DESC, "level")));
     }
+    public Page<HeroEntity> getIndexPageFirstUsers() {
+        return heroRepository.findAll(
+                PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "level")));
+    }
 
     public boolean doesUserHasHeroCreated(String username) {
         return userService.findByUsername(username).getHero() != null;

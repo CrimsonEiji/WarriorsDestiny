@@ -1,42 +1,63 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head th:replace="~{fragments/commons::head}"><title>Warriors Destiny</title>
-</head>
-
+<head th:replace="~{fragments/commons::head}">
+    <title></title></head>
 <body class="bg-theme bg-theme2">
 
-<!-- Start wrapper-->
 <div id="wrapper">
-    <!--Start sidebar-wrapper-->
-<div th:replace="~{fragments/sideBar}"></div>
 
+    <div th:replace="~{fragments/sideBar}"></div>
     <div th:replace="~{fragments/topBar}"></div>
-    <div class="clearfix"></div>
 
-    <div class="content-wrapper">
-        <div class="container-fluid">
-
-            <!--Start Dashboard Content-->
-
+    <div class=" content-wrapper">
+        <div class="  container-fluid">
             <div class="card mt-3">
-            </div><!--End Row-->
-
-            <!--End Dashboard Content-->
-
-            <!--start overlay-->
-            <div class="overlay toggle-menu"></div>
-            <!--end overlay-->
+                <div class="card-body">
+                    <h5 class="card-title">Best warriors in the REALM of Destruction</h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Level</th>
+                                <th scope="col">Class</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="hero,rank:${heroes}">
+                                <th scope="row" th:classappend="${rank.index==0? 'text-gold' : ''}"
+                                    th:text="${rank.index+1}"></th>
+                                <td><a th:href="@{/hero/details/{heroID}(heroID = ${hero.id})}" class="btn-link"
+                                       th:text="${hero.name}"></a>
+                                </td>
+                                <td th:text="${hero.level}"></td>
+                                <td th:text="${hero.heroClass.name()}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">Join the warriors on crusade against the evil and claim your destiny!</h5>
+                    <h6>Sed auctor orci at urna fringilla scelerisque. Vivamus fringilla mollis laoreet. Donec finibus nisl eget magna aliquam ultricies. Nam suscipit vestibulum nulla eget pretium. Nam ac interdum eros. Vestibulum tincidunt nibh sed diam tincidunt mattis. Donec sit amet nunc consequat risus ultrices semper. Mauris eros eros, vestibulum at dictum vel, fermentum non augue. Sed pretium ex ut est rhoncus dignissim. Vivamus porta elit non mi placerat volutpat. Phasellus felis tortor, pretium nec mollis sed, vulputate in lacus. Etiam quis porttitor eros, sit amet laoreet urna. Vivamus aliquet velit vitae mollis pharetra. Proin finibus sodales neque, vitae sollicitudin mi ornare in. </h6>
+                </div>
+            </div>
+            <div class="card justify-content-md-center col-lg-12" >
+                <div class="card-body">
+                    <a href="/auth/login" class="btn btn-light btn-block">Join now</a>
+                </div>
+            </div>
 
         </div>
-        <!-- End container-fluid-->
+
+
         <div class="overlay toggle-menu"></div>
     </div>
-
-
-    <footer th:replace="~{fragments/commons::footer}">
-    </footer>
 </div>
-
-<div th:replace="~{fragments/scripts}"></div>
+<div th:replace="~{fragments/scripts}">
+</div>
 </body>
 </html>

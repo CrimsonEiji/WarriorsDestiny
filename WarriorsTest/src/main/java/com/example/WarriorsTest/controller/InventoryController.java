@@ -65,8 +65,7 @@ public class InventoryController {
 
     @PostMapping("/sell/{itemID}")
     public String sellItem(@PathVariable Long itemID, Principal principal) {
-
-        inventoryService.sellItem(principal.getName(), itemID, 50);
+        inventoryService.sellItem(principal.getName(), itemID);
 
         return "redirect:/inventory";
     }

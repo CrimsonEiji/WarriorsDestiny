@@ -1,7 +1,5 @@
 package com.example.WarriorsTest.services;
 
-import com.example.WarriorsTest.models.DTO.UserDTO;
-import com.example.WarriorsTest.models.entity.HeroEntity;
 import com.example.WarriorsTest.models.entity.UserEntity;
 import com.example.WarriorsTest.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
