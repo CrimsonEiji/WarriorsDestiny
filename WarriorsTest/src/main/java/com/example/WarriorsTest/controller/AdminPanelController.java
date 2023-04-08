@@ -11,12 +11,15 @@ import com.example.WarriorsTest.services.UserService;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -55,12 +58,13 @@ public class AdminPanelController {
 
     @PostMapping("/addUserRole")
     public String addUserRole(@Valid @ModelAttribute UserRoleAddDTO userRoleAddDTO, BindingResult bindingResult,
-                              RedirectAttributes ra) {
+                              RedirectAttributes ra, Principal principal) {
 
         if (bindingResult.hasErrors()) {
             ra.addFlashAttribute("userRoleAdd", userRoleAddDTO)
                     .addFlashAttribute("org.springframework.validation.BindingResult.userRoleAdd", bindingResult);
         }
+        if (userService.findByUsername(principal.getName()).getRoles().size() == 0) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
 
         UserEntity userEntity = userService.findByUsername(userRoleAddDTO.getUsername());
 
@@ -72,10 +76,12 @@ public class AdminPanelController {
 
     @PostMapping("/removeUserRole")
     public String removeUserRole(@Valid @ModelAttribute UserRoleRemoveDTO userRoleRemoveDTO, BindingResult bindingResult,
-                                 RedirectAttributes ra) {
+                                 RedirectAttributes ra,Principal principal) {
         if (userRoleRemoveDTO.getUsername().equals("admin")) {
             throw new UserIsDefaultAdminException(false);
         }
+        if (userService.findByUsername(principal.getName()).getRoles().size() == 0) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+
         if (bindingResult.hasErrors()) {
             ra.addFlashAttribute("userRoleRemove", userRoleRemoveDTO)
                     .addFlashAttribute("org.springframework.validation.BindingResult.userRoleRemove", bindingResult);

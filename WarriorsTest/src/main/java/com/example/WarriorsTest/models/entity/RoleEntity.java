@@ -16,6 +16,7 @@ public class RoleEntity {
     public RoleEntity() {
     }
 
+
     public UserRoles getUserRole() {
         return userRole;
     }

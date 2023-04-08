@@ -46,6 +46,8 @@ public class InventoryService {
         HeroEntity hero = userService
                 .findByUsername(username).getHero();
         ItemEntity item = itemService.findById(itemID);
+        if (!hero.getInventory().contains(item)) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+
         EquippedItemsEntity equipped = hero.getEquipped();
         switch (item.getType()) {
             case BOW -> {
@@ -117,6 +119,7 @@ public class InventoryService {
                 .findByUsername(username).getHero();
 
         ItemEntity item = itemService.findById(itemID);
+        if (!hero.getInventory().contains(item)) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         EquippedItemsEntity equipped = hero.getEquipped();
         switch (item.getType()) {
             case BOW, STAFF, SWORD -> {
@@ -150,6 +153,7 @@ public class InventoryService {
     public void sellItem(String username, long itemID) {
         HeroEntity hero = userService.findByUsername(username).getHero();
         ItemEntity item = itemService.findById(itemID);
+        if (!hero.getInventory().contains(item)) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         hero.setGold(hero.getGold() + item.getPrice());
         deleteItem(username, itemID);
         heroService.saveAndFlush(hero);
@@ -159,6 +163,7 @@ public class InventoryService {
         HeroEntity hero = userService
                 .findByUsername(username).getHero();
         ItemEntity item = itemService.findById(itemID);
+        if (!hero.getInventory().contains(item)) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
 
         EquippedItemsDTO equippedItemsDTO = modelMapper.map(hero.getEquipped(), EquippedItemsDTO.class);
 

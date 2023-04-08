@@ -63,10 +63,10 @@ public class AuthorizationController {
             return "redirect:register";
         }
        var newUser = modelMapper.map(userRegisterDTO, UserEntity.class);
-        newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
+        newUser.setPassword(passwordEncoder.encode(newUser.getPassword())).setInBattle(false);
         userService.saveAndFlush(newUser);
 
-        return "Login";
+        return "redirect:/auth/login";
     }
     @ModelAttribute("userRegisterDTO")
     public UserRegisterDTO userRegisterDTO() {

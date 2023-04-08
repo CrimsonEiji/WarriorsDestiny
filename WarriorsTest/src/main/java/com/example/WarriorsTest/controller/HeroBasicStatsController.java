@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
 
@@ -26,6 +27,7 @@ public class HeroBasicStatsController {
     @GetMapping
     public ResponseEntity<HeroRESTStatsDTO> getStatsToDisplay(Principal principal) {
         UserEntity user = userService.findByUsername(principal.getName());
+        if (user.getHero() == null) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         HeroRESTStatsDTO hero = modelMapper.map(user.getHero(), HeroRESTStatsDTO.class);
         return new ResponseEntity<>(hero, HttpStatus.OK);
     }

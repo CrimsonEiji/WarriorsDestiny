@@ -2,6 +2,8 @@ package com.example.WarriorsTest.services;
 
 import com.example.WarriorsTest.RandomItemGenerator;
 import com.example.WarriorsTest.enums.HeroClass;
+import com.example.WarriorsTest.enums.ItemType;
+import com.example.WarriorsTest.enums.Type;
 import com.example.WarriorsTest.exeptions.hero.HeroAlreadyCreatedException;
 import com.example.WarriorsTest.models.DTO.HeroCreationDTO;
 import com.example.WarriorsTest.models.entity.*;
@@ -66,6 +68,7 @@ public class HeroService {
         return heroRepository.findAll(
                 PageRequest.of(page, 100, Sort.by(Sort.Direction.DESC, "level")));
     }
+
     public Page<HeroEntity> getIndexPageFirstUsers() {
         return heroRepository.findAll(
                 PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "level")));
@@ -99,8 +102,18 @@ public class HeroService {
         List<ItemEntity> inventory = new ArrayList<>();
         for (int g = 0; g < 4; g++) {
             ItemEntity item = generator.generate(1);
-            itemService.save(item);
-            inventory.add(item);
+            if (item.getItemType() != ItemType.CONSUMABLE) {
+                if (heroCreationDTO.getHeroClass() == HeroClass.KNIGHT
+                        && item.getItemType() == ItemType.WEAPON
+                        && item.getType() != Type.SWORD) {
+                    g -= 1;
+                } else {
+                    itemService.save(item);
+                    inventory.add(item);
+                }
+            } else {
+                g -= 1;
+            }
         }
         HeroEntity hero = new HeroEntity();
         hero.setLevel(1)
